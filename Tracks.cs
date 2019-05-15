@@ -82,11 +82,25 @@ namespace Sprint_2
             outside.Fill = Brushes.Purple;
             canvas.Children.Add(outside);
             canvas.Children.Add(inside);
-
+            Rectangle finish = new Rectangle();
+            finish.Height = 100;
+            finish.Width = 25;
+            finish.Fill = Brushes.White;
+            canvas.Children.Add(finish);
+            Canvas.SetTop(finish, 725);
+            Canvas.SetLeft(finish, 500);
 
         }
-        public void Track3(Canvas c) { }
+        public void Track3(Canvas c)
+        {
+            Rectangle finish2 = new Rectangle();
+            finish2.Height = 100;
+            finish2.Width = 25;
+            finish2.Fill = Brushes.White;
+            canvas.Children.Add(finish2);
+            Canvas.SetTop(finish2, 725);
+            Canvas.SetLeft(finish2, 500);
+        }
 
-        
     }
 }
