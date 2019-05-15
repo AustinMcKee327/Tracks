@@ -93,6 +93,55 @@ namespace Sprint_2
         }
         public void Track3(Canvas c)
         {
+            canvas = c;
+            Polygon OutsideU = new Polygon();
+            Point OTL = new Point(25, 50);
+            Point OTMR = new Point(325, 50);
+            Point OML = new Point(325, 525);
+            Point OMR = new Point(525, 525);
+            Point OTML = new Point(525, 50);
+            Point OTR = new Point(825, 50);
+            Point OBR = new Point(825, 825);
+            Point OBL = new Point(25, 825);
+            PointCollection OutsideUpoints = new PointCollection();
+            OutsideUpoints.Add(OTL);
+            OutsideUpoints.Add(OTMR);
+            OutsideUpoints.Add(OML);
+            OutsideUpoints.Add(OMR);
+            OutsideUpoints.Add(OTML);
+            OutsideUpoints.Add(OTR);
+            OutsideUpoints.Add(OBR);
+            OutsideUpoints.Add(OBL);
+
+            OutsideU.Points = OutsideUpoints;
+            Canvas.SetLeft(OutsideU, 100);
+            OutsideU.Fill = Brushes.Purple;
+            canvas.Children.Add(OutsideU);
+            Polygon insideU = new Polygon();
+            Point TL = new Point(125,150);
+            Point TMR = new Point(225, 150);
+            Point ML = new Point(225, 625);
+            Point MR = new Point(625, 625);
+            Point TML = new Point(625, 150);
+            Point TR = new Point(725, 150);
+            Point BR = new Point(725, 725);
+            Point BL = new Point(125, 725);
+            PointCollection InsideUpoints = new PointCollection();
+            InsideUpoints.Add(TL);
+            InsideUpoints.Add(TMR);
+            InsideUpoints.Add(ML);
+            InsideUpoints.Add(MR);
+            InsideUpoints.Add(TML);
+            InsideUpoints.Add(TR);
+            InsideUpoints.Add(BR);
+            InsideUpoints.Add(BL);
+            insideU.Points = InsideUpoints;
+            insideU.Fill = Brushes.Black;
+            Canvas.SetLeft(insideU, 100);
+            canvas.Children.Add(insideU);
+
+            
+
             Rectangle finish2 = new Rectangle();
             finish2.Height = 100;
             finish2.Width = 25;
