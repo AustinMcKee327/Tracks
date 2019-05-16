@@ -20,29 +20,87 @@ namespace Sprint_2
 
     public class Tracks
     {
-        public Polygon TrackOneInsideOne = new Polygon();
-        Point InsideOne1 = new Point(300, 125);
-        Point InsideOne2 = new Point(900, 125);
-        Point InsideOne3 = new Point(1100, 325);
-        Point InsideOne4 = new Point(1100, 525);
-        Point InsideOne5 = new Point(900, 725);
-        Point InsideOne6 = new Point(300, 725);
-        Point InsideOne7 = new Point(100, 525);
-        Point InsideOne8 = new Point(100, 325);
-        PointCollection InsideOne = new PointCollection();
-       
         /// <summary>
+        /// Ethan Hunter
         ///Tracks and their layouts
         /// </summary>
         Canvas canvas;
-        public Player player;
-       
+        public Polygon wallinner = new Polygon();
+        public Polygon wallouter = new Polygon();
+        public Point wallpoint1 = new Point();
+        public Point wallpoint2 = new Point();
+        public Point wallpoint3 = new Point();
+        public Point wallpoint4 = new Point();
+        public Point wallpoint5 = new Point();
+        public Point wallpoint6 = new Point();
+        public PointCollection wallPoints = new PointCollection();
+        public Point wallpoint1out = new Point();
+        public Point wallpoint2out = new Point();
+        public Point wallpoint3out = new Point();
+        public Point wallpoint4out = new Point();
+        Rectangle startLine = new Rectangle();
+        
+        /// <summary>
+        /// Austin McKee
+        /// 
+        /// Each track is points and polygons used for walls
+        /// </summary>
+        /// <param name="c">
+        /// same for all tracks, c = gameScreen in mainwindow.xaml.cs
+        /// </param>
         public void Track1(Canvas c)
         {
             canvas = c;
+            Polygon OutsideT = new Polygon();
+            Point OBL = new Point(300, 825);
+            Point OMML = new Point(300, 500);
+            Point OML = new Point(100, 500);
+            Point OTL = new Point(100, 100);
+            Point OTR = new Point(900, 100);
+            Point OMR = new Point(900, 500);
+            Point OMMR = new Point(700, 500);
+            Point OBR = new Point(700, 825);
+            PointCollection OutsideTP = new PointCollection();
+            OutsideTP.Add(OBL);
+            OutsideTP.Add(OMML);
+            OutsideTP.Add(OML);
+            OutsideTP.Add(OTL);
+            OutsideTP.Add(OTR);
+            OutsideTP.Add(OMR);
+            OutsideTP.Add(OMMR);
+            OutsideTP.Add(OBR);
+            OutsideT.Points = OutsideTP;
+            OutsideT.Fill = Brushes.Purple;
+            canvas.Children.Add(OutsideT);
+            Polygon InsideT = new Polygon();
+            Point BL = new Point(400, 725);
+            Point MML = new Point(400, 400);
+            Point ML = new Point(200, 400);
+            Point TL = new Point(200, 200);
+            Point TR = new Point(800, 200);
+            Point MR = new Point(800, 400);
+            Point MMR = new Point(600, 400);
+            Point BR = new Point(600,725);
+            PointCollection InsideTP = new PointCollection();
+            InsideTP.Add(BL);
+            InsideTP.Add(MML);
+            InsideTP.Add(ML);
+            InsideTP.Add(TL);
+            InsideTP.Add(TR);
+            InsideTP.Add(MR);
+            InsideTP.Add(MMR);
+            InsideTP.Add(BR);
+            InsideT.Points = InsideTP;
+            InsideT.Fill = Brushes.Black;
+            canvas.Children.Add(InsideT);
             
-            
-
+            Rectangle finish = new Rectangle();
+            finish.Height = 100;
+            finish.Width = 25;
+            finish.Fill = Brushes.White;
+            canvas.Children.Add(finish);
+            Canvas.SetTop(finish, 725);
+            Canvas.SetLeft(finish, 500);
         }
         public void Track2(Canvas c)
         {
@@ -63,14 +121,14 @@ namespace Sprint_2
             pointCollection.Add(BL);
             inside.Points = pointCollection;
             inside.Fill = Brushes.Black;
-            
+
             Polygon outside = new Polygon();
             Point OTL = new Point(100, 25);
             Point OTR = new Point(500, 25);
             Point OMM = new Point(500, 425);
-            Point OMR = new Point(900,425);
-            Point OBR = new Point(900,825);
-            Point OBL = new Point(100,825);
+            Point OMR = new Point(900, 425);
+            Point OBR = new Point(900, 825);
+            Point OBL = new Point(100, 825);
             PointCollection collection = new PointCollection();
             collection.Add(OTL);
             collection.Add(OTR);
@@ -89,7 +147,6 @@ namespace Sprint_2
             canvas.Children.Add(finish);
             Canvas.SetTop(finish, 725);
             Canvas.SetLeft(finish, 500);
-
         }
         public void Track3(Canvas c)
         {
@@ -118,7 +175,7 @@ namespace Sprint_2
             OutsideU.Fill = Brushes.Purple;
             canvas.Children.Add(OutsideU);
             Polygon insideU = new Polygon();
-            Point TL = new Point(125,150);
+            Point TL = new Point(125, 150);
             Point TMR = new Point(225, 150);
             Point ML = new Point(225, 625);
             Point MR = new Point(625, 625);
@@ -140,16 +197,36 @@ namespace Sprint_2
             Canvas.SetLeft(insideU, 100);
             canvas.Children.Add(insideU);
 
-            
 
-            Rectangle finish2 = new Rectangle();
-            finish2.Height = 100;
-            finish2.Width = 25;
-            finish2.Fill = Brushes.White;
-            canvas.Children.Add(finish2);
-            Canvas.SetTop(finish2, 725);
-            Canvas.SetLeft(finish2, 500);
+
+            Rectangle finish = new Rectangle();
+            finish.Height = 100;
+            finish.Width = 25;
+            finish.Fill = Brushes.White;
+            canvas.Children.Add(finish);
+            Canvas.SetTop(finish, 725);
+            Canvas.SetLeft(finish, 500);
         }
 
+        /// <summary>
+        /// Ethan Hunter
+        /// </summary>
+        /// <param name="p"></param>
+        public void checkColide(Player p)
+        {
+            if((p.position.X+22>=wallpoint1.X  &&
+                p.position.Y+28>=wallpoint1.Y &&
+                p.position.Y + 28 <= wallpoint2.Y &&
+                p.position.X +22 <= wallpoint4.X)
+                ||
+                (p.position.X >= wallpoint1.X &&
+                p.position.Y >= wallpoint1.Y &&
+                p.position.Y <= wallpoint2.Y &&
+                p.position.X <= wallpoint4.X))   
+            {               
+                p.speed = 2;
+            }
+        }
     }
+
 }
