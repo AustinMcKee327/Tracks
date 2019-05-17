@@ -31,6 +31,7 @@ namespace Sprint_2
         public DispatcherTimer gametimer = new DispatcherTimer();
         Tracks t = new Tracks();                                        //calls tracks
         public static int trackNum;                                     //pulls from TrackSelection window
+        public int LapCounter = 0;
         GameState gameState = new GameState();
         Player p1;                                                      //player 1
         Player p2;                                                      //player 2 
@@ -56,6 +57,7 @@ namespace Sprint_2
             lblangle.Content = "Angle :" +angle;
             lblspeed.Content = "Speed :" + speed;
             lblGameState.Content = "Game State :" + gameState.ToString();
+            
             if (gameState == GameState.MainMenu)                                        //if on the main/start menu
             {
                 lblTime.Visibility = Visibility.Hidden;
@@ -69,10 +71,19 @@ namespace Sprint_2
                 t.checkColide(p1);
                 timer.Start();
                 lblTime.Content = timer.Elapsed;
+                
                 if (Keyboard.IsKeyToggled(Key.Space) == false)
                 {
                     gameState = GameState.Loading;
                     instructions.Visibility = Visibility.Visible;
+                }
+                if (Keyboard.IsKeyDown(Key.R))
+                {
+                    LapCounter = 3;
+                }
+                if (t.checkLap(p1) == true)
+                {
+                    LapCounter++;
                 }
 
             }
@@ -89,6 +100,29 @@ namespace Sprint_2
         
 
             }
+            if(LapCounter == 3)
+                {
+                    gameState = GameState.Time;
+                    
+                }
+            else if (gameState == GameState.Time)
+            {
+                timer.Stop();
+                try
+                {
+                    System.IO.StreamWriter sw = new System.IO.StreamWriter("BestTimes.txt",false);
+                    sw.WriteLine(timer.Elapsed.ToString());
+                    sw.Flush();
+                    sw.Close();
+                    LapCounter = 0;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+                
+            
             
             if (Keyboard.IsKeyToggled(Key.P))
             {           
@@ -156,6 +190,14 @@ namespace Sprint_2
         private void Window_LostFocus(object sender, RoutedEventArgs e)
         {
             gameState = GameState.Loading;
+        }
+
+        private void HighScores_Click(object sender, RoutedEventArgs e)
+        {
+            System.IO.StreamReader Scores = new System.IO.StreamReader("BestTimes.txt");
+            MessageBox.Show(Scores.ReadLine());
+
+            
         }
     }
 }

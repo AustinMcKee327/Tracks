@@ -15,6 +15,7 @@
         <Canvas x:Name="mainMenu" Visibility="Visible">
             <Button x:Name="selectTrack" FontSize="38" Background="Black" Click="Button_Click" Foreground="White" Content="Select Track" Height="65" VerticalAlignment="Bottom" Canvas.Left="525" Canvas.Top="188"/>
             <Button x:Name="startGame" FontSize="33" Click="startGame_Click" Background="Black" Foreground="White" Canvas.Left="525" Canvas.Top="258" Height="47" Width="200">Start Game</Button>
+            <Button x:Name="HighScores" Background="Black" Foreground="White" Content="Click to See Best Times" FontSize="33" Click="HighScores_Click" Canvas.Left="469" Canvas.Top="310"/>
         </Canvas>
         <Canvas x:Name="game">
             <Canvas Name="gameScreen">

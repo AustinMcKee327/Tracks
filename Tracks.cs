@@ -101,6 +101,7 @@ namespace Sprint_2
             canvas.Children.Add(finish);
             Canvas.SetTop(finish, 725);
             Canvas.SetLeft(finish, 500);
+            
         }
         public void Track2(Canvas c)
         {
@@ -226,6 +227,22 @@ namespace Sprint_2
             {               
                 p.speed = 2;
             }
+            
+            
+        }
+        public bool checkLap(Player p)
+        {
+            Point finishone = new Point(500, 725);
+            Point finishtwo = new Point(525, 825);
+            if (p.position.X + 22 >= finishone.X && p.position.X <= finishtwo.X)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
         }
     }
 
